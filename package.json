@@ -1,0 +1,21 @@
+{
+  "name": "adom",
+  "version": "0.0.1",
+  "description": "Functional DOM framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "teenytest \"test/**.js\""
+  },
+  "keywords": [],
+  "author": "Adrian Unger <dev@staydecent.ca>",
+  "license": "MIT",
+  "dependencies": {
+    "atom": "1.4.1",
+    "check-arg-types": "1.1.2"
+  },
+  "devDependencies": {
+    "jsdom": "16.2.2",
+    "teenytest": "6.0.2",
+    "undom": "0.4.0"
+  }
+}
