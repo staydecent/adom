@@ -135,12 +135,12 @@
   }
 
   // export a unique element factory function for most tags
-  const tags = ['a', 'abbr', 'acronym', 'address', 'article', 'aside', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'del', 'div', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'img', 'input', 'ins', 'label', 'legend', 'li', 'link', 'main', 'meta', 'nav', 'ol', 'optgroup', 'option', 'p', 'param', 'picture', 'pre', 'progress', 'script', 'section', 'select', 'small', 'source', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'ul', 'video'].reduce((acc, tag) => {
+  const tags = ['a', 'abbr', 'acronym', 'address', 'article', 'aside', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'del', 'div', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'img', 'input', 'ins', 'label', 'legend', 'li', 'link', 'main', 'meta', 'nav', 'ol', 'optgroup', 'option', 'p', 'param', 'picture', 'pre', 'progress', 'script', 'section', 'select', 'small', 'source', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'ul', 'video']
+
+  return tags.reduce(function (acc, tag) {
     acc[tag] = createElement.bind(null, tag)
     return acc
-  }, {})
-
-  return Object.assign({}, tags, {
-    updateElement
+  }, {
+    updateElement: updateElement
   })
 }))
