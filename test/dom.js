@@ -1,5 +1,14 @@
+if (typeof window === 'undefined') {
+  const jsdom = require('jsdom')
+  const { JSDOM } = jsdom
+  const { window } = new JSDOM(`<!DOCTYPE html>`)
+  const { document } = window
+  global.window = window
+  global.document = document
+}
+
 const assert = require('assert')
-const { updateElement, p, div } = require('../src')
+const { updateElement, p, div, input } = require('../src')
 
 module.exports = {
   export: () => assert.ok(updateElement),
@@ -58,6 +67,35 @@ module.exports = {
       const expected = b.outerHTML
       updateElement(a, b)
       assert.equal(a.outerHTML, expected, 'result was expected')
+    },
+  },
+
+  value: {
+    hasValue: () => {
+      const a = input({type: 'text', value: 'howdy'})
+      assert.equal(a.value, 'howdy')
+      assert.equal(a.getAttribute('value'), 'howdy')
+    },
+
+    removeValue: () => {
+      let a = input({type: 'text', value: 'howdy'})
+      let b = input({type: 'text'})
+      updateElement(a, b)
+      assert.equal(a.getAttribute('value'), null)
+      assert.equal(a.value, '')
+
+      a = input({type: 'text', value: 'howdy'})
+      b = input({type: 'text', value: null})
+      updateElement(a, b)
+      assert.equal(a.getAttribute('value'), null)
+      assert.equal(a.value, '')
+    },
+
+    updateValue: () => {
+      let a = input({type: 'text', value: 'howdy'})
+      let b = input({type: 'text', value: 'hi'})
+      updateElement(a, b)
+      assert.equal(a.value, 'hi')
     },
   },
 }
